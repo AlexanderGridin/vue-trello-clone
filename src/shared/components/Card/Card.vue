@@ -1,5 +1,5 @@
 <script setup lang="ts">
-interface CardProps {
+export interface CardProps {
   showHeader?: boolean;
   showContent?: boolean;
   showFooter?: boolean;
