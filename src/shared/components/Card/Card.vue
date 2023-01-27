@@ -1,15 +1,19 @@
 <script setup lang="ts">
+import { useCardComputedProps } from "./compossbles/useCardComputedProps";
+
 export interface CardProps {
   showHeader?: boolean;
   showContent?: boolean;
   showFooter?: boolean;
+  backgroundColor?: string;
 }
 
-defineProps<CardProps>();
+const props = defineProps<CardProps>();
+const { cardStyle } = useCardComputedProps(props);
 </script>
 
 <template>
-  <div class="Card">
+  <div class="Card" :style="cardStyle">
     <div v-if="showHeader" class="Card--header">
       <slot name="header" />
     </div>
@@ -31,7 +35,6 @@ defineProps<CardProps>();
   min-height: 40px;
   border-radius: 3px;
   padding: 8px;
-  background-color: #ebecf0;
 }
 
 .Card--header {
