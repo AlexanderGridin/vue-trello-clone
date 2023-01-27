@@ -1,16 +1,17 @@
-import type { BoardModel } from "@app/components/BoardPage/models/BoardModel";
+import type { BoardModel } from "@pages/BoardPage/models/BoardModel";
+import { generateId } from "@shared/utils/generateId";
 
 export const BOARD: BoardModel = {
-  id: "12312",
+  id: generateId(),
   title: "Test Board",
   lists: [
     {
-      id: "12312312",
+      id: generateId(),
       title: "TODO:",
       tasks: [],
     },
     {
-      id: "23123",
+      id: generateId(),
       title: "DONE:",
       tasks: [],
     },
