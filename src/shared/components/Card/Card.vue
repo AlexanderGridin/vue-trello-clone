@@ -35,16 +35,10 @@ defineProps<CardProps>();
 }
 
 .Card--header {
-  border: 1px solid blue;
   margin-bottom: 12px;
 }
 
-.Card--content {
-  border: 1px solid green;
-}
-
 .Card--footer {
-  border: 1px solid red;
   margin-top: 12px;
 }
 </style>
