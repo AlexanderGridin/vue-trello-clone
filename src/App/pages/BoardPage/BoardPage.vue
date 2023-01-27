@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { BoardModel } from "@app/components/BoardPage/models/BoardModel";
+import type { BoardModel } from "@app/pages/BoardPage/models/BoardModel";
+import BoardPageCell from "@app/pages/BoardPage/components/BoardPageCell.vue";
 import TasksList from "@app/components/TasksList/TasksList.vue";
-import BoardPageCell from "@app/components/BoardPage/components/BoardPageCell.vue";
 
 export interface BoardProps {
   board: BoardModel;
@@ -47,5 +47,9 @@ defineProps<BoardProps>();
 .Board__content {
   flex-grow: 1;
   padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow-x: auto;
 }
 </style>
