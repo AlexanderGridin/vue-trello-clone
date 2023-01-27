@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { BOARD } from "../static-data/board";
-import Board from "./components/Board/Board.vue";
+import BoardPage from "@pages/BoardPage/BoardPage.vue";
 </script>
 
 <template>
-  <Board :board="BOARD" />
+  <BoardPage :board="BOARD" />
 </template>
 
 <style scoped></style>
