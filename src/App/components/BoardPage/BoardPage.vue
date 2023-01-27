@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import TestForm from "@app/components/TestForm/TestForm.vue";
-
-import type { BoardModel } from "@app/components/Board/models/BoardModel";
+import type { BoardModel } from "@app/components/BoardPage/models/BoardModel";
 import TasksList from "@app/components/TasksList/TasksList.vue";
-import BoardCell from "@app/components/Board/components/BoardCell.vue";
+import BoardPageCell from "@app/components/BoardPage/components/BoardPageCell.vue";
 
 export interface BoardProps {
   board: BoardModel;
@@ -13,16 +11,15 @@ defineProps<BoardProps>();
 </script>
 
 <template>
-  <TestForm />
   <div class="Board">
     <div class="Board__header">
       <h2 class="Board__title">{{ board.title }}</h2>
     </div>
 
     <div class="Board__content">
-      <BoardCell v-for="list in board.lists" :key="list.id">
+      <BoardPageCell v-for="list in board.lists" :key="list.id">
         <TasksList :list="list"> </TasksList>
-      </BoardCell>
+      </BoardPageCell>
     </div>
   </div>
 </template>

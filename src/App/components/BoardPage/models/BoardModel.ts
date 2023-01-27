@@ -1,4 +1,4 @@
-import type { TasksListModel } from "@/App/models/TasksList";
+import type { TasksListModel } from "@app/components/TasksList/models/TasksListModel";
 
 export interface BoardModel {
   id: string;
