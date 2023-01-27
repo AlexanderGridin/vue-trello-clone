@@ -35,6 +35,7 @@ const { cardStyle } = useCardComputedProps(props);
   min-height: 40px;
   border-radius: 3px;
   padding: 8px;
+  box-shadow: #091e4240 0px 1px 0px 0px;
 }
 
 .Card--header {
