@@ -1,4 +1,5 @@
 export const useTasksListActions = () => {
-  const remove = () => console.log("remove click");
+  const remove = () => console.log("Remove TasksList");
+
   return { remove };
 };
