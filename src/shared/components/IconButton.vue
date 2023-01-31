@@ -12,10 +12,6 @@ const props = defineProps<{
   visualStyle?: ButtonStyle | ButtonStyle[];
 }>();
 
-defineEmits<{
-  (e: "onClick"): void;
-}>();
-
 const visualStyle = computed(() => {
   if (Array.isArray(props.visualStyle)) {
     return [...props.visualStyle, ButtonStyle.Icon];
@@ -28,7 +24,7 @@ const visualStyle = computed(() => {
 </script>
 
 <template>
-  <Button :type="type" :visual-style="visualStyle" @on-click="$emit('onClick')">
+  <Button :type="type" :visual-style="visualStyle">
     <Icon style="display: block" :icon="icon" />
   </Button>
 </template>
