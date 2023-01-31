@@ -1,21 +1,27 @@
 import { TaskModel } from "@/App/components/Task/models/TaskModel";
 import { TasksListModel } from "@/App/components/TasksList/models/TasksListModel";
-import type { BoardModel } from "@pages/BoardPage/models/BoardModel";
-import { generateId } from "@shared/utils/generateId";
+import { BoardModel } from "@pages/BoardPage/models/BoardModel";
 
-export const BOARD: BoardModel = {
-  id: generateId(),
-  title: "Test Board",
-  lists: [
-    new TasksListModel({
-      title: "Todo",
-      tasks: [
-        new TaskModel({ listId: "2", content: "Test task 1" }),
-        new TaskModel({ listId: "2", content: "Test task 2" }),
-        new TaskModel({ listId: "2", content: "Test task 3" }),
-      ],
-    }),
-    new TasksListModel({ title: "In Progress" }),
-    new TasksListModel({ title: "Done" }),
-  ],
-};
+const boardIds = ["1231231", "23423423", "567567567"];
+const listIds = ["qweqweqw", "asdasdasd", "zxczxczxc"];
+
+export const boards: BoardModel[] = boardIds.map(
+  (boardId: string, index: number) =>
+    new BoardModel({
+      id: boardId,
+      title: `Test board ${index}`,
+      lists: listIds.map(
+        (listId: string, listIndex: number) =>
+          new TasksListModel({
+            id: listId,
+            title: `Test tasks list ${listIndex}`,
+            boardId,
+            tasks: [
+              new TaskModel({ listId, boardId, content: "Test task 1" }),
+              new TaskModel({ listId, boardId, content: "Test task 2" }),
+              new TaskModel({ listId, boardId, content: "Test task 3" }),
+            ],
+          })
+      ),
+    })
+);
