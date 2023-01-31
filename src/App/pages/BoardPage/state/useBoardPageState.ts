@@ -6,7 +6,7 @@ import { useTaskActions } from "./actions/useTaskActions";
 import { BoardModel } from "../models/BoardModel";
 import { useBoardPageActions } from "./actions/useBoardPageActions";
 
-export const useBoardPageState = defineStore("board", () => {
+export const useBoardPageState = defineStore("BoardPage", () => {
   const state = ref(new BoardModel({}));
 
   const getters = useBoardPageGetters(state);
