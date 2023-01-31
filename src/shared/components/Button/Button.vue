@@ -10,19 +10,10 @@ export interface ButtonProps {
 
 const props = defineProps<ButtonProps>();
 const { buttonType, buttonClass } = useButtonComputedProps(props);
-
-defineEmits<{
-  (e: "onClick"): void;
-}>();
 </script>
 
 <template>
-  <button
-    :type="buttonType"
-    class="Button"
-    :class="buttonClass"
-    @click="$emit('onClick')"
-  >
+  <button :type="buttonType" class="Button" :class="buttonClass">
     <slot />
   </button>
 </template>
