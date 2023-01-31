@@ -6,7 +6,7 @@ import { useBoardPageState } from "@pages/BoardPage/state/useBoardPageState";
 import AddItem from "@/App/components/AddItem/AddItem.vue";
 import { useBoardPageActions } from "./comosables/useBoardPageActions";
 import { onMounted } from "vue";
-import { boards } from "@/static-data/board";
+import { boards } from "@/static-data/boards";
 
 const state = useBoardPageState();
 const { addList, addTaskInList } = useBoardPageActions();
