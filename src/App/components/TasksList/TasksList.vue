@@ -10,21 +10,23 @@ defineProps<{
   showChildren?: boolean;
 }>();
 
-const { remove, removeTask } = useTasksListActions();
+const { remove, removeSelectedTask } = useTasksListActions();
 </script>
 
 <template>
   <article>
     <Card :show-header="true" :show-content="true" :show-footer="showChildren">
       <template #header>
-        <TasksListHeader :list="list" @on-remove="remove" />
+        <TasksListHeader :list="list" @on-remove="remove(list)" />
       </template>
 
       <template #content>
         <ul class="plain-list">
           <li v-for="task in list.tasks" :key="task.id" class="TasksList--item">
             <Card background-color="#FFF">
-              <Task @on-remove="removeTask(task)">{{ task.content }}</Task>
+              <Task @on-remove="removeSelectedTask(task)">{{
+                task.content
+              }}</Task>
             </Card>
           </li>
         </ul>

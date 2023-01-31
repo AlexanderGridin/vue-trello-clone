@@ -1,8 +1,12 @@
+import { useBoardPageState } from "@pages/BoardPage/state/useBoardPageState";
 import type { TaskModel } from "../../Task/models/TaskModel";
+import type { TasksListModel } from "../models/TasksListModel";
 
 export const useTasksListActions = () => {
-  const remove = () => console.log("Remove TasksList");
-  const removeTask = (task: TaskModel) => console.log(`Remove Task ${task.id}`);
+  const { removeList, removeTask } = useBoardPageState();
 
-  return { remove, removeTask };
+  const remove = (list: TasksListModel) => removeList(list);
+  const removeSelectedTask = (task: TaskModel) => removeTask(task);
+
+  return { remove, removeSelectedTask };
 };
