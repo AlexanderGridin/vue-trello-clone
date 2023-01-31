@@ -14,7 +14,7 @@ defineEmits<{
     <IconButton
       :icon="MaterialIcon.Close"
       :visual-style="ButtonStyle.Error"
-      @on-click="$emit('onRemove')"
+      @click="$emit('onRemove')"
     />
   </div>
 </template>
