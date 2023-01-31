@@ -13,8 +13,9 @@
 .AppPageLayout {
   width: 100%;
   height: 100%;
-  background-color: #292e39;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
 }
