@@ -1,26 +1,46 @@
 <script setup lang="ts">
-import type { BoardModel } from "@app/pages/BoardPage/models/BoardModel";
 import BoardPageCell from "@app/pages/BoardPage/components/BoardPageCell.vue";
 import TasksList from "@app/components/TasksList/TasksList.vue";
 import AppPageLayout from "@app/components/AppPageLayout/AppPageLayout.vue";
+import { useBoardPageState } from "@pages/BoardPage/state/useBoardPageState";
+import AddItem from "@/App/components/AddItem/AddItem.vue";
+import { useBoardPageActions } from "./comosables/useBoardPageActions";
+import { onMounted } from "vue";
+import { boards } from "@/static-data/board";
 
-export interface BoardProps {
-  board: BoardModel;
-}
+const state = useBoardPageState();
+const { addList, addTaskInList } = useBoardPageActions();
 
-defineProps<BoardProps>();
+onMounted(() => {
+  state.setBoard(boards[0]);
+});
 </script>
 
 <template>
   <AppPageLayout>
     <template #header>
-      <h2 class="Board__title">{{ board.title }}</h2>
+      <h2 class="Board__title">{{ state.title }}</h2>
     </template>
 
     <template #content>
       <div class="Board__content">
-        <BoardPageCell v-for="list in board.lists" :key="list.id">
-          <TasksList :list="list"> </TasksList>
+        <BoardPageCell v-for="list in state.lists" :key="list.id">
+          <TasksList :list="list" :show-children="true">
+            <AddItem
+              button-text="+ Add task"
+              placeholder="Enter task title"
+              :is-dark="true"
+              @on-add="(entity) => addTaskInList(list, entity)"
+            />
+          </TasksList>
+        </BoardPageCell>
+
+        <BoardPageCell>
+          <AddItem
+            button-text="+ Add list"
+            placeholder="Enter list title"
+            @on-add="addList"
+          />
         </BoardPageCell>
       </div>
     </template>
