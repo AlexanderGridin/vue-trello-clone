@@ -1,11 +1,11 @@
 <template>
-  <div class="BoardCell">
+  <div class="BoardPageCell">
     <slot />
   </div>
 </template>
 
 <style>
-.BoardCell {
+.BoardPageCell {
   width: 300px;
   margin-right: 20px;
   flex-grow: 0;

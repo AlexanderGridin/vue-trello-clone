@@ -23,10 +23,20 @@ body {
   margin-right: 0 !important;
 }
 
+.mr {
+  margin-right: 7px;
+}
+
 .dragging {
   opacity: 0;
 }
 
 .drag-preview {
   transform: rotate(5deg);
+}
+
+.plain-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
