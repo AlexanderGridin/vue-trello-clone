@@ -1,10 +1,7 @@
-<script setup lang="ts">
-import { BOARD } from "../static-data/board";
-import BoardPage from "@pages/BoardPage/BoardPage.vue";
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <BoardPage :board="BOARD" />
+  <RouterView />
 </template>
 
 <style scoped></style>
