@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import AppLayout from "./components/AppLayout.vue";
+import AppNavigation from "./components/AppNavigation/AppNavigation.vue";
 </script>
 
 <template>
   <AppLayout>
     <template #sidebar>
-      <div>Sidebar</div>
+      <AppNavigation />
     </template>
 
     <template #content>
