@@ -5,26 +5,39 @@ import AppPageLayout from "@app/components/AppPageLayout/AppPageLayout.vue";
 import { useBoardPageState } from "@pages/BoardPage/state/useBoardPageState";
 import AddItem from "@/App/components/AddItem/AddItem.vue";
 import { useBoardPageActions } from "./comosables/useBoardPageActions";
-import { onMounted } from "vue";
-import { boards } from "@/static-data/boards";
+import { ref, watch } from "vue";
+import { useRoute } from "vue-router";
+import { BoardModel } from "./models/BoardModel";
 
+const route = useRoute();
 const state = useBoardPageState();
-const { addList, addTaskInList } = useBoardPageActions();
+const { addList, addTaskInList } = useBoardPageActions(state.board);
 
-onMounted(() => {
-  state.setBoard(boards[0]);
-});
+const isLoading = ref(true);
+
+watch(
+  () => route.params.boardId,
+  (id) => {
+    const board =
+      state.boards.find((board: BoardModel) => board.id === id) ??
+      new BoardModel({});
+    state.setBoard(board);
+
+    isLoading.value = false;
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
-  <AppPageLayout>
+  <AppPageLayout :is-loading="isLoading">
     <template #header>
-      <h2 class="Board__title">{{ state.title }}</h2>
+      <h2 class="Board__title">{{ state.board.title }}</h2>
     </template>
 
     <template #content>
       <div class="Board__content">
-        <BoardPageCell v-for="list in state.lists" :key="list.id">
+        <BoardPageCell v-for="list in state.board.lists" :key="list.id">
           <TasksList :list="list" :show-children="true">
             <AddItem
               button-text="+ Add task"

@@ -3,30 +3,38 @@ import type { TaskModel } from "@/App/components/Task/models/TaskModel";
 import type { TasksListModel } from "@/App/components/TasksList/models/TasksListModel";
 
 export const useTaskActions = (state: BoardPageState) => {
-  const removeTask = (task: TaskModel) => {
-    state.value.lists = state.value.lists.map((list: TasksListModel) => {
-      if (list.id !== task.listId) {
-        return list;
-      }
+  const removeTask = (taskToRemove: TaskModel) => {
+    state.value.board = {
+      ...state.value.board,
+      lists: state.value.board.lists.map((list: TasksListModel) => {
+        if (list.id !== taskToRemove.listId) {
+          return { ...list };
+        }
 
-      return {
-        ...list,
-        tasks: list.tasks.filter(({ id }: TaskModel) => id !== task.id),
-      };
-    });
+        return {
+          ...list,
+          tasks: list.tasks.filter(
+            (task: TaskModel) => task.id !== taskToRemove.id
+          ),
+        };
+      }),
+    };
   };
 
-  const addTask = (task: TaskModel) => {
-    state.value.lists = state.value.lists.map((list: TasksListModel) => {
-      if (list.id !== task.listId) {
-        return { ...list };
-      }
+  const addTask = (taskToAdd: TaskModel) => {
+    state.value.board = {
+      ...state.value.board,
+      lists: state.value.board.lists.map((list: TasksListModel) => {
+        if (list.id !== taskToAdd.listId) {
+          return { ...list };
+        }
 
-      return {
-        ...list,
-        tasks: [...list.tasks, task],
-      };
-    });
+        return {
+          ...list,
+          tasks: [...list.tasks, taskToAdd],
+        };
+      }),
+    };
   };
 
   return { removeTask, addTask };

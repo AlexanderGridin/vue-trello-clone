@@ -2,8 +2,8 @@ import { computed } from "vue";
 import type { BoardPageState } from "../models/BoardPageState";
 
 export const useBoardPageGetters = (state: BoardPageState) => {
-  const title = computed(() => state.value.title);
-  const lists = computed(() => state.value.lists);
+  const board = computed(() => state.value.board);
+  const boards = computed(() => state.value.boards);
 
-  return { title, lists };
+  return { board, boards };
 };
