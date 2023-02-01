@@ -1,4 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Spinner from "@app/components/Spinner/Spinner.vue";
+
+export interface AppPageLayoutProps {
+  isLoading?: boolean;
+}
+
+withDefaults(defineProps<AppPageLayoutProps>(), {
+  isLoading: false,
+});
+</script>
 
 <template>
   <div class="AppPageLayout">
@@ -6,6 +16,7 @@
     <div class="AppPageLayout--content"><slot name="content" /></div>
 
     <slot />
+    <Spinner v-if="isLoading" />
   </div>
 </template>
 
