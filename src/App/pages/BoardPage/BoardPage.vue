@@ -5,48 +5,21 @@ import AppPageLayout from "@app/components/AppPageLayout/AppPageLayout.vue";
 import { useBoardPageState } from "@pages/BoardPage/state/useBoardPageState";
 import AddItem from "@/App/components/AddItem/AddItem.vue";
 import { useBoardPageFeatures } from "./comosables/useBoardPageFeatures";
-import { ref, watch } from "vue";
-import { useRoute } from "vue-router";
-import { BoardModel } from "./models/BoardModel";
-import { useBoardsPageState } from "../BoardsPage/state/useBoardsPageState";
+import { useBoardPageWatchers } from "./comosables/useBoardPageWatchers";
 
-const route = useRoute();
 const state = useBoardPageState();
-const boardsPageState = useBoardsPageState();
 const { addList, addTaskInList } = useBoardPageFeatures(state.board);
-
-const isLoading = ref(true);
-
-watch(
-  () => route.params.boardId,
-  (id) => {
-    const cachedBoard = state.getBoardFromCache(id as string);
-
-    if (!cachedBoard) {
-      const board =
-        boardsPageState.boards.find((board: BoardModel) => board.id === id) ??
-        new BoardModel({});
-
-      state.cacheBoard(board);
-      state.setBoard(board);
-    } else {
-      state.setBoard(cachedBoard);
-    }
-
-    isLoading.value = false;
-  },
-  { immediate: true }
-);
+const { isLoading } = useBoardPageWatchers();
 </script>
 
 <template>
   <AppPageLayout :is-loading="isLoading">
     <template #header>
-      <h2 class="Board__title">{{ state.board.title }}</h2>
+      <h2 class="title">{{ state.board.title }}</h2>
     </template>
 
     <template #content>
-      <div class="Board__content">
+      <div class="content">
         <BoardPageCell v-for="list in state.board.lists" :key="list.id">
           <TasksList :list="list" :show-children="true">
             <AddItem
@@ -71,7 +44,7 @@ watch(
 </template>
 
 <style scoped>
-.Board__title {
+.title {
   margin: 0;
   text-align: center;
   line-height: 1.3;
@@ -80,7 +53,7 @@ watch(
   font-size: 24px;
 }
 
-.Board__content {
+.content {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
