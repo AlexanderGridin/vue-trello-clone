@@ -14,11 +14,11 @@ defineEmits<{
 </script>
 
 <template>
-  <div class="container">
-    <h2 class="title">{{ board.title }}</h2>
+  <div class="BoardHeader-container">
+    <h2 class="BoardHeader-title">{{ board.title }}</h2>
 
     <IconButton
-      class="button"
+      class="BoardHeader-delete-button"
       :icon="MaterialIcon.Close"
       :visual-style="ButtonStyle.Error"
       @click="$emit('onRemove')"
@@ -27,20 +27,20 @@ defineEmits<{
 </template>
 
 <style scoped>
-.container {
+.BoardHeader-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
 }
 
-.title {
+.BoardHeader-title {
   margin: 0;
   font-size: 24px;
   font-weight: bold;
   margin-right: 7px;
 }
 
-.button {
+.BoardHeader-delete-button {
   margin-left: auto;
 }
 </style>
