@@ -4,27 +4,23 @@ import TasksList from "@app/components/TasksList/TasksList.vue";
 import AppPageLayout from "@app/components/AppPageLayout/AppPageLayout.vue";
 import { useBoardPageState } from "@pages/BoardPage/state/useBoardPageState";
 import AddItem from "@/App/components/AddItem/AddItem.vue";
-import { useBoardPageActions } from "./comosables/useBoardPageActions";
-import { onMounted } from "vue";
-import { boards } from "@/static-data/boards";
+import { useBoardPageFeatures } from "./comosables/useBoardPageFeatures";
+import { useBoardPageWatchers } from "./comosables/useBoardPageWatchers";
 
 const state = useBoardPageState();
-const { addList, addTaskInList } = useBoardPageActions();
-
-onMounted(() => {
-  state.setBoard(boards[0]);
-});
+const { addList, addTaskInList } = useBoardPageFeatures(state.board);
+const { isLoading } = useBoardPageWatchers();
 </script>
 
 <template>
-  <AppPageLayout>
+  <AppPageLayout :is-loading="isLoading">
     <template #header>
-      <h2 class="Board__title">{{ state.title }}</h2>
+      <h2 class="title">{{ state.board.title }}</h2>
     </template>
 
     <template #content>
-      <div class="Board__content">
-        <BoardPageCell v-for="list in state.lists" :key="list.id">
+      <div class="content">
+        <BoardPageCell v-for="list in state.board.lists" :key="list.id">
           <TasksList :list="list" :show-children="true">
             <AddItem
               button-text="+ Add task"
@@ -48,7 +44,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.Board__title {
+.title {
   margin: 0;
   text-align: center;
   line-height: 1.3;
@@ -57,7 +53,7 @@ onMounted(() => {
   font-size: 24px;
 }
 
-.Board__content {
+.content {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;

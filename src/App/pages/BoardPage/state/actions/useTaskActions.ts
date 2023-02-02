@@ -1,32 +1,47 @@
 import type { BoardPageState } from "../models/BoardPageState";
 import type { TaskModel } from "@/App/components/Task/models/TaskModel";
 import type { TasksListModel } from "@/App/components/TasksList/models/TasksListModel";
+import { useBoardPageActions } from "./useBoardPageActions";
 
 export const useTaskActions = (state: BoardPageState) => {
-  const removeTask = (task: TaskModel) => {
-    state.value.lists = state.value.lists.map((list: TasksListModel) => {
-      if (list.id !== task.listId) {
-        return list;
-      }
+  const { syncBoardWithCache } = useBoardPageActions(state);
 
-      return {
-        ...list,
-        tasks: list.tasks.filter(({ id }: TaskModel) => id !== task.id),
-      };
-    });
+  const removeTask = (taskToRemove: TaskModel) => {
+    state.value.board = {
+      ...state.value.board,
+      lists: state.value.board.lists.map((list: TasksListModel) => {
+        if (list.id !== taskToRemove.listId) {
+          return { ...list };
+        }
+
+        return {
+          ...list,
+          tasks: list.tasks.filter(
+            (task: TaskModel) => task.id !== taskToRemove.id
+          ),
+        };
+      }),
+    };
+
+    syncBoardWithCache();
   };
 
-  const addTask = (task: TaskModel) => {
-    state.value.lists = state.value.lists.map((list: TasksListModel) => {
-      if (list.id !== task.listId) {
-        return { ...list };
-      }
+  const addTask = (taskToAdd: TaskModel) => {
+    state.value.board = {
+      ...state.value.board,
+      lists: state.value.board.lists.map((list: TasksListModel) => {
+        if (list.id !== taskToAdd.listId) {
+          return { ...list };
+        }
 
-      return {
-        ...list,
-        tasks: [...list.tasks, task],
-      };
-    });
+        return {
+          ...list,
+          tasks: [...list.tasks, taskToAdd],
+        };
+      }),
+    };
+
+    syncBoardWithCache();
   };
 
   return { removeTask, addTask };

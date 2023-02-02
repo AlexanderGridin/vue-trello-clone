@@ -27,6 +27,10 @@ body {
   margin-right: 7px;
 }
 
+.mb {
+  margin-bottom: 7px;
+}
+
 .dragging {
   opacity: 0;
 }
