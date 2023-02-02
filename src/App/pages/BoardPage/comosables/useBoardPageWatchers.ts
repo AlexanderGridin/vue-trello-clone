@@ -1,24 +1,25 @@
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { BoardModel } from "../models/BoardModel";
-import { useBoardsPageState } from "../../BoardsPage/state/useBoardsPageState";
 import { useBoardPageState } from "@pages/BoardPage/state/useBoardPageState";
+import { getBoard } from "@/api/getBoard";
 
 export const useBoardPageWatchers = () => {
   const state = useBoardPageState();
   const route = useRoute();
-  const boardsPageState = useBoardsPageState();
   const isLoading = ref(true);
 
   watch(
     () => route.params.boardId,
-    (id) => {
+    async (id: string | string[]) => {
       const cachedBoard = state.getBoardFromCache(id as string);
 
       if (!cachedBoard) {
-        const board =
-          boardsPageState.boards.find((board: BoardModel) => board.id === id) ??
-          new BoardModel({});
+        const loadedBoard = await getBoard(id as string);
+        const board = new BoardModel({
+          id: loadedBoard.id,
+          title: loadedBoard.title,
+        });
 
         state.cacheBoard(board);
         state.setBoard(board);
