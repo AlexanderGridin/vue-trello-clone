@@ -4,7 +4,7 @@ import { useBoardPageState } from "@pages/BoardPage/state/useBoardPageState";
 import type { AddItemFormValue } from "@/App/components/AddItem/components/AddItemForm/models/AddItemFormValue";
 import type { BoardModel } from "../models/BoardModel";
 
-export const useBoardPageActions = (board: BoardModel) => {
+export const useBoardPageFeatures = (board: BoardModel) => {
   const state = useBoardPageState();
 
   const addList = (entity: AddItemFormValue) => {
@@ -13,12 +13,12 @@ export const useBoardPageActions = (board: BoardModel) => {
     );
   };
 
-  const addTaskInList = (list: TasksListModel, entity: AddItemFormValue) => {
+  const addTaskInList = (list: TasksListModel, formValue: AddItemFormValue) => {
     state.addTask(
       new TaskModel({
         listId: list.id,
         boardId: board.id,
-        content: entity.text,
+        content: formValue.text,
       })
     );
   };

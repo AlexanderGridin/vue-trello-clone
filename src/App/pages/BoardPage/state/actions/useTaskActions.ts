@@ -1,8 +1,11 @@
 import type { BoardPageState } from "../models/BoardPageState";
 import type { TaskModel } from "@/App/components/Task/models/TaskModel";
 import type { TasksListModel } from "@/App/components/TasksList/models/TasksListModel";
+import { useBoardPageActions } from "./useBoardPageActions";
 
 export const useTaskActions = (state: BoardPageState) => {
+  const { syncBoardWithCache } = useBoardPageActions(state);
+
   const removeTask = (taskToRemove: TaskModel) => {
     state.value.board = {
       ...state.value.board,
@@ -19,6 +22,8 @@ export const useTaskActions = (state: BoardPageState) => {
         };
       }),
     };
+
+    syncBoardWithCache();
   };
 
   const addTask = (taskToAdd: TaskModel) => {
@@ -35,6 +40,8 @@ export const useTaskActions = (state: BoardPageState) => {
         };
       }),
     };
+
+    syncBoardWithCache();
   };
 
   return { removeTask, addTask };

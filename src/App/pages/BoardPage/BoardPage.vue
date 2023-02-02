@@ -4,24 +4,34 @@ import TasksList from "@app/components/TasksList/TasksList.vue";
 import AppPageLayout from "@app/components/AppPageLayout/AppPageLayout.vue";
 import { useBoardPageState } from "@pages/BoardPage/state/useBoardPageState";
 import AddItem from "@/App/components/AddItem/AddItem.vue";
-import { useBoardPageActions } from "./comosables/useBoardPageActions";
+import { useBoardPageFeatures } from "./comosables/useBoardPageFeatures";
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { BoardModel } from "./models/BoardModel";
+import { useBoardsPageState } from "../BoardsPage/state/useBoardsPageState";
 
 const route = useRoute();
 const state = useBoardPageState();
-const { addList, addTaskInList } = useBoardPageActions(state.board);
+const boardsPageState = useBoardsPageState();
+const { addList, addTaskInList } = useBoardPageFeatures(state.board);
 
 const isLoading = ref(true);
 
 watch(
   () => route.params.boardId,
   (id) => {
-    const board =
-      state.boards.find((board: BoardModel) => board.id === id) ??
-      new BoardModel({});
-    state.setBoard(board);
+    const cachedBoard = state.getBoardFromCache(id as string);
+
+    if (!cachedBoard) {
+      const board =
+        boardsPageState.boards.find((board: BoardModel) => board.id === id) ??
+        new BoardModel({});
+
+      state.cacheBoard(board);
+      state.setBoard(board);
+    } else {
+      state.setBoard(cachedBoard);
+    }
 
     isLoading.value = false;
   },

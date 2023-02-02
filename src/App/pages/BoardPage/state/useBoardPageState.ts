@@ -3,13 +3,12 @@ import { defineStore } from "pinia";
 import { useBoardPageGetters } from "./getters/useBoardPageGetters";
 import { useTasksListActions } from "./actions/useTasksListActions";
 import { useTaskActions } from "./actions/useTaskActions";
-import { boards } from "@/static-data/boards";
 import { BoardModel } from "../models/BoardModel";
 import { useBoardPageActions } from "./actions/useBoardPageActions";
 
 export const useBoardPageState = defineStore("BoardPage", () => {
   const state = ref({
-    boards,
+    boardsCache: {} as Record<string, BoardModel>,
     board: new BoardModel({}),
   });
 
