@@ -1,4 +1,4 @@
-import { TasksListModel } from "@/App/components/TasksList/models/TasksListModel";
+import { TasksListModel } from "@app/entities/TasksList/TasksListModel";
 import { TaskModel } from "@app/entities/Task/TaskModel";
 import { useBoardPageState } from "@pages/BoardPage/state/useBoardPageState";
 import type { AddItemFormValue } from "@/App/components/AddItemForm/models/AddItemFormValue";

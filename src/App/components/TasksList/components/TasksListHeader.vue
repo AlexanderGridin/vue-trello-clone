@@ -2,7 +2,7 @@
 import { ButtonStyle } from "@/shared/components/Button/enums/ButtonStyle";
 import { MaterialIcon } from "@/shared/components/Icon/enums/MaterialIcon";
 import IconButton from "@/shared/components/IconButton.vue";
-import type { TasksListModel } from "@app/components/TasksList/models/TasksListModel";
+import type { TasksListModel } from "@app/entities/TasksList/TasksListModel";
 
 defineProps<{
   list: TasksListModel;

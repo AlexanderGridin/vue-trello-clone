@@ -1,4 +1,4 @@
-import type { TasksListModel } from "@/App/components/TasksList/models/TasksListModel";
+import type { TasksListModel } from "@app/entities/TasksList/TasksListModel";
 import type { BoardPageState } from "../models/BoardPageState";
 import { useBoardPageActions } from "./useBoardPageActions";
 

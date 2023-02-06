@@ -1,5 +1,5 @@
 import { TaskModel } from "@app/entities/Task/TaskModel";
-import { TasksListModel } from "@/App/components/TasksList/models/TasksListModel";
+import { TasksListModel } from "@app/entities/TasksList/TasksListModel";
 import { BoardModel } from "@app/entities/Board/BoardModel";
 
 const boardIds = ["1231231", "23423423", "567567567"];
