@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Card from "@/shared/components/Card/Card.vue";
 import AppPageLayout from "@/App/components/AppPageLayout/AppPageLayout.vue";
-import Board from "@/App/components/Board/Board.vue";
+import Board from "@app/widgets/Board/Board.vue";
 import { useBoardsPageFeatures } from "./composables/useBoardsPageFeatures";
 import { useBoardsPageState } from "./state/useBoardsPageState";
 import { onMounted, ref } from "vue";
