@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import AddButton from "../AddButton/AddButton.vue";
-import { useAddItemActions } from "./composables/useAddItemActions";
+import { useAddItemFeatures } from "./composables/useAddItemFeatures";
 import AddItemForm from "./components/AddItemForm/AddItemForm.vue";
 import type { AddItemFormValue } from "./components/AddItemForm/models/AddItemFormValue";
-import type { AddItemEvent } from "./enums/AddItemEvent";
 import { useAddItemState } from "./composables/useAddItemState";
 
 export interface AddItemProps {
@@ -13,14 +12,14 @@ export interface AddItemProps {
 }
 
 export interface AddItemEmit {
-  (e: AddItemEvent.OnAdd, entity: AddItemFormValue): void;
+  (e: "onAdd", entity: AddItemFormValue): void;
 }
 
 defineProps<AddItemProps>();
 const emit = defineEmits<AddItemEmit>();
 
 const state = useAddItemState();
-const { hideForm, showForm, addItem } = useAddItemActions(state, emit);
+const { hideForm, showForm, addItem } = useAddItemFeatures(state, emit);
 </script>
 
 <template>
