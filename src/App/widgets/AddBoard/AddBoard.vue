@@ -1,0 +1,40 @@
+<script setup lang="ts">
+import AddItem from "@app/components/AddItem/AddItem.vue";
+import AddButton from "@/App/components/AddButton/AddButton.vue";
+import AddItemForm from "@/App/components/AddItemForm/AddItemForm.vue";
+import type { AddItemFormValue } from "@/App/components/AddItemForm/models/AddItemFormValue";
+import { useAddBoardFeatures } from "./composables/useAddBoardFatures";
+
+export interface AddBoardEmitter {
+  (e: "onAdd", value: AddItemFormValue): void;
+}
+
+const emit = defineEmits<AddBoardEmitter>();
+const { add } = useAddBoardFeatures(emit);
+</script>
+
+<template>
+  <AddItem>
+    <template #button="{ isShowForm, showForm }">
+      <AddButton
+        v-if="!isShowForm"
+        align-content="center"
+        :min-height="150"
+        @click="showForm"
+      >
+        <span class="text-light"> + Add board </span>
+      </AddButton>
+    </template>
+
+    <template #form="{ isShowForm, hideForm }">
+      <AddItemForm
+        v-if="isShowForm"
+        placeholder="Enter board title"
+        @on-submit="(formValue) => add(formValue, hideForm)"
+        @on-cancel="hideForm"
+      />
+    </template>
+  </AddItem>
+</template>
+
+<style scoped></style>
