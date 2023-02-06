@@ -6,8 +6,9 @@ import { useBoardsPageFeatures } from "./composables/useBoardsPageFeatures";
 import { useBoardsPageState } from "./state/useBoardsPageState";
 import { onMounted, ref } from "vue";
 import { getBoards } from "@/api/getBoards";
-import { BoardModel } from "@app/entities/Board/BoardModel";
+/* import { BoardModel } from "@app/entities/Board/BoardModel"; */
 import AddBoard from "@app/widgets/AddBoard/AddBoard.vue";
+import { boards } from "@/static-data/boards";
 
 const state = useBoardsPageState();
 const { addBoard, removeBoard, navigateToBoardPage } = useBoardsPageFeatures();
@@ -20,9 +21,9 @@ onMounted(async () => {
   }
 
   const loadedBoards = await getBoards();
-  const boards = loadedBoards.products
-    .slice(0, 6)
-    .map((board: any) => new BoardModel({ id: board.id, title: board.title }));
+  /* const boards = loadedBoards.products */
+  /*   .slice(0, 6) */
+  /*   .map((board: any) => new BoardModel({ id: board.id, title: board.title })); */
 
   state.setBoards(boards);
   state.setIsLoaded(true);

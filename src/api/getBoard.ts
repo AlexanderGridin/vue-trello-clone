@@ -1,5 +1,16 @@
 export const getBoard = async (id: string) => {
-  return await fetch(`https://dummyjson.com/products/${id}`)
-    .then((res) => res.json())
-    .then((json) => json);
+  try {
+    const response: Response = await fetch(
+      `https://dummyjson.com/products/${id}`
+    );
+
+    if (response.status !== 200) {
+      throw Error();
+    }
+
+    return await response.json();
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
 };

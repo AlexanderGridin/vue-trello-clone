@@ -18,8 +18,6 @@ import { MaterialIcon } from "@/shared/components/Icon/enums/MaterialIcon";
 
 <style scoped>
 .AppNavigation {
-  border: 1px solid #5e81ac;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
   overflow: hidden;
 }
 
