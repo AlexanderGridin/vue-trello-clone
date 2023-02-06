@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BoardPageCell from "@app/pages/BoardPage/components/BoardPageCell.vue";
-import TasksList from "@app/components/TasksList/TasksList.vue";
+import TasksList from "@app/widgets/TasksList/TasksList.vue";
 import AppPageLayout from "@app/components/AppPageLayout/AppPageLayout.vue";
 import { useBoardPageState } from "@pages/BoardPage/state/useBoardPageState";
 import AddItem from "@/App/components/AddItem/AddItem.vue";
