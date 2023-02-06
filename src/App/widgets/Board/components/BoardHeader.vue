@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import IconButton from "@shared/components/IconButton.vue";
-import { MaterialIcon } from "@/shared/components/Icon/enums/MaterialIcon";
-import { ButtonStyle } from "@/shared/components/Button/enums/ButtonStyle";
 import type { BoardModel } from "@/App/entities/Board/BoardModel";
+import DeleteButton from "@/App/components/DeleteButton/DeleteButton.vue";
 
 defineProps<{
   board: BoardModel;
@@ -17,10 +15,8 @@ defineEmits<{
   <div class="BoardHeader-container">
     <h2 class="BoardHeader-title">{{ board.title }}</h2>
 
-    <IconButton
+    <DeleteButton
       class="BoardHeader-delete-button"
-      :icon="MaterialIcon.Close"
-      :visual-style="ButtonStyle.Error"
       @click="$emit('onRemove')"
     />
   </div>

@@ -9,7 +9,9 @@ import AddTask from "@/App/widgets/AddTask/AddTask.vue";
 import AddTasksList from "@/App/widgets/AddTasksList/AddTasksList.vue";
 
 const state = useBoardPageState();
-const { addList, addTaskInList } = useBoardPageFeatures(state.board);
+const { addList, addTaskInList, togglePinList } = useBoardPageFeatures(
+  state.board
+);
 const { isLoading } = useBoardPageWatchers();
 </script>
 
@@ -21,8 +23,12 @@ const { isLoading } = useBoardPageWatchers();
 
     <template #content>
       <div class="content">
-        <BoardPageCell v-for="list in state.board.lists" :key="list.id">
-          <TasksList :list="list" :show-children="true">
+        <BoardPageCell v-for="list in state.boardLists" :key="list.id">
+          <TasksList
+            :list="list"
+            :show-children="true"
+            @on-pin="togglePinList(list)"
+          >
             <AddTask @on-add="(task) => addTaskInList(task, list)" />
           </TasksList>
         </BoardPageCell>

@@ -21,5 +21,11 @@ export const useBoardPageFeatures = (board: BoardModel) => {
     });
   };
 
-  return { addList, addTaskInList };
+  const togglePinList = (list: TasksListModel) => {
+    list.isPinned
+      ? state.unpinList({ ...list, isPinned: false })
+      : state.pinList({ ...list, isPinned: true });
+  };
+
+  return { addList, addTaskInList, togglePinList };
 };

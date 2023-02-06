@@ -12,6 +12,7 @@ export class BoardModel {
 
   public title: string;
   public lists: TasksListModel[];
+  public pinnedLists: TasksListModel[] = [];
 
   constructor({ id = generateId(), title = "", lists = [] }: BoardModelConfig) {
     this.id = id;

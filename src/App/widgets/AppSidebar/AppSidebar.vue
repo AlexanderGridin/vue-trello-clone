@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import User from "@app/components/User/User.vue";
 import AppNavigation from "@app/components/AppNavigation/AppNavigation.vue";
+import { useCurrentDate } from "@app/composables/useCurrentDate";
 
-const dateParts = new Date().toLocaleDateString().split("/");
-const [month, day, year] = dateParts;
-const date = `${Number(day) < 10 ? `0${day}` : day}.${
-  Number(month) < 10 ? `0${month}` : month
-}.${year}`;
+const date = useCurrentDate();
 </script>
 
 <template>
@@ -20,7 +17,7 @@ const date = `${Number(day) < 10 ? `0${day}` : day}.${
     </div>
 
     <div class="AppSidebar-footer">
-      <span>{{ date }}</span>
+      <div :style="{ textAlign: 'center' }">{{ date }}</div>
     </div>
   </div>
 </template>
