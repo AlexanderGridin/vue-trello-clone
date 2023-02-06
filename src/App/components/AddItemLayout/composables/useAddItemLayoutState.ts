@@ -4,7 +4,4 @@ export class AddItemLayoutState {
   public isShowForm = false;
 }
 
-export const useAddItemLayoutState = () => {
-  const state = ref(new AddItemLayoutState());
-  return state;
-};
+export const useAddItemLayoutState = () => ref(new AddItemLayoutState());
