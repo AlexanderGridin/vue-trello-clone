@@ -1,5 +1,5 @@
 import { useRouter } from "vue-router";
-import type { BoardModel } from "@pages/BoardPage/models/BoardModel";
+import type { BoardModel } from "@app/entities/Board/BoardModel";
 import { useBoardsPageState } from "../state/useBoardsPageState";
 import { useBoardPageState } from "../../BoardPage/state/useBoardPageState";
 

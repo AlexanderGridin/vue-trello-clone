@@ -1,6 +1,6 @@
 import { TaskModel } from "@/App/components/Task/models/TaskModel";
 import { TasksListModel } from "@/App/components/TasksList/models/TasksListModel";
-import { BoardModel } from "@pages/BoardPage/models/BoardModel";
+import { BoardModel } from "@app/entities/Board/BoardModel";
 
 const boardIds = ["1231231", "23423423", "567567567"];
 const listIds = ["qweqweqw", "asdasdasd", "zxczxczxc"];

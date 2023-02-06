@@ -6,7 +6,7 @@ import { useBoardsPageFeatures } from "./composables/useBoardsPageFeatures";
 import { useBoardsPageState } from "./state/useBoardsPageState";
 import { onMounted, ref } from "vue";
 import { getBoards } from "@/api/getBoards";
-import { BoardModel } from "../BoardPage/models/BoardModel";
+import { BoardModel } from "@app/entities/Board/BoardModel";
 import AddBoard from "@app/widgets/AddBoard/AddBoard.vue";
 
 const state = useBoardsPageState();

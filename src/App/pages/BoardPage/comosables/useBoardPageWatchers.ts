@@ -1,6 +1,6 @@
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
-import { BoardModel } from "../models/BoardModel";
+import { BoardModel } from "@app/entities/Board/BoardModel";
 import { useBoardPageState } from "@pages/BoardPage/state/useBoardPageState";
 import { getBoard } from "@/api/getBoard";
 

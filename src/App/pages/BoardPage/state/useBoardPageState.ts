@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 import { useBoardPageGetters } from "./getters/useBoardPageGetters";
 import { useTasksListActions } from "./actions/useTasksListActions";
 import { useTaskActions } from "./actions/useTaskActions";
-import { BoardModel } from "../models/BoardModel";
+import { BoardModel } from "@app/entities/Board/BoardModel";
 import { useBoardPageActions } from "./actions/useBoardPageActions";
 
 export const useBoardPageState = defineStore("BoardPage", () => {

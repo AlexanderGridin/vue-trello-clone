@@ -3,7 +3,7 @@ import AddItem from "@app/components/AddItem/AddItem.vue";
 import AddButton from "@/App/components/AddButton/AddButton.vue";
 import AddItemForm from "@/App/components/AddItemForm/AddItemForm.vue";
 import { useAddBoardFeatures } from "./composables/useAddBoardFatures";
-import type { BoardModel } from "@/App/pages/BoardPage/models/BoardModel";
+import type { BoardModel } from "@/App/entities/Board/BoardModel";
 
 export interface AddBoardEmitter {
   (e: "onAdd", board: BoardModel): void;

@@ -1,8 +1,8 @@
 import { TasksListModel } from "@/App/components/TasksList/models/TasksListModel";
 import { TaskModel } from "@/App/components/Task/models/TaskModel";
 import { useBoardPageState } from "@pages/BoardPage/state/useBoardPageState";
-import type { AddItemFormValue } from "@/App/components/AddItem/components/AddItemForm/models/AddItemFormValue";
-import type { BoardModel } from "../models/BoardModel";
+import type { AddItemFormValue } from "@/App/components/AddItemForm/models/AddItemFormValue";
+import type { BoardModel } from "@app/entities/Board/BoardModel";
 
 export const useBoardPageFeatures = (board: BoardModel) => {
   const state = useBoardPageState();
