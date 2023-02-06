@@ -9,7 +9,7 @@ import { MaterialIcon } from "@/shared/components/Icon/enums/MaterialIcon";
       <li>
         <router-link class="AppNavigation-link" to="/">
           <Icon :icon="MaterialIcon.Home" class="AppNavigation-icon" />
-          Home
+          Boards
         </router-link>
       </li>
     </ul>
@@ -20,7 +20,6 @@ import { MaterialIcon } from "@/shared/components/Icon/enums/MaterialIcon";
 .AppNavigation {
   border: 1px solid #5e81ac;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-  border-radius: 3px;
   overflow: hidden;
 }
 
@@ -31,6 +30,7 @@ import { MaterialIcon } from "@/shared/components/Icon/enums/MaterialIcon";
   color: #fff;
   text-decoration: none;
   transition: all 0.4s;
+  font-size: 18px;
 }
 
 .AppNavigation-link.router-link-active,
