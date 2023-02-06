@@ -15,6 +15,12 @@ const router = createRouter({
       // lazy loaded component
       component: () => import("../pages/BoardPage/BoardPage.vue"),
     },
+    {
+      path: "/boards/favorite",
+      name: "favorite-boards",
+      component: () =>
+        import("../pages/FavoriteBoardsPage/FavoriteBoardsPage.vue"),
+    },
   ],
 });
 

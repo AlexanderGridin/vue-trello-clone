@@ -12,6 +12,13 @@ import { MaterialIcon } from "@/shared/components/Icon/enums/MaterialIcon";
           Boards
         </router-link>
       </li>
+
+      <li>
+        <router-link class="AppNavigation-link" to="/boards/favorite">
+          <Icon :icon="MaterialIcon.Star" class="AppNavigation-icon" />
+          Favorite boards
+        </router-link>
+      </li>
     </ul>
   </nav>
 </template>
