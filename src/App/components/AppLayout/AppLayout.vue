@@ -16,14 +16,14 @@
 .sidebar {
   width: 300px;
   color: #fff;
-  padding: 20px;
   flex-shrink: 0;
-  background-color: #3b4252;
+  background-color: #292e39;
+  border-right: 1px solid #4c566a;
 }
 
 .content {
   position: relative;
   flex-grow: 1;
-  background-color: #292e39;
+  background-color: #2e3440;
 }
 </style>
