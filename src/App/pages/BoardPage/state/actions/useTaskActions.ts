@@ -1,5 +1,5 @@
 import type { BoardPageState } from "../models/BoardPageState";
-import type { TaskModel } from "@/App/components/Task/models/TaskModel";
+import type { TaskModel } from "@app/entities/Task/TaskModel";
 import type { TasksListModel } from "@/App/components/TasksList/models/TasksListModel";
 import { useBoardPageActions } from "./useBoardPageActions";
 

@@ -1,4 +1,4 @@
-import { TaskModel } from "@/App/components/Task/models/TaskModel";
+import { TaskModel } from "@app/entities/Task/TaskModel";
 import { TasksListModel } from "@/App/components/TasksList/models/TasksListModel";
 import { BoardModel } from "@app/entities/Board/BoardModel";
 

@@ -1,4 +1,4 @@
-import type { TaskModel } from "@app/components/Task/models/TaskModel";
+import type { TaskModel } from "@app/entities/Task/TaskModel";
 import { generateId } from "@shared/utils/generateId";
 
 interface TasksListModelConfig {

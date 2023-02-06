@@ -1,5 +1,5 @@
 import { useBoardPageState } from "@pages/BoardPage/state/useBoardPageState";
-import type { TaskModel } from "../../Task/models/TaskModel";
+import type { TaskModel } from "@app/entities/Task/TaskModel";
 import type { TasksListModel } from "../models/TasksListModel";
 
 export const useTasksListFeatures = () => {
