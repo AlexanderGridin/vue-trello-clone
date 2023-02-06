@@ -5,5 +5,12 @@ export const useBoardPageGetters = (state: BoardPageState) => {
   const board = computed(() => state.value.board);
   const boardsCache = computed(() => state.value.boardsCache);
 
-  return { board, boardsCache };
+  const boardLists = computed(() => {
+    const lists = state.value.board.lists;
+    const pinnedLists = state.value.board.pinnedLists;
+
+    return [...pinnedLists, ...lists];
+  });
+
+  return { board, boardsCache, boardLists };
 };

@@ -10,6 +10,10 @@ defineProps<{
   showChildren?: boolean;
 }>();
 
+defineEmits<{
+  (e: "onPin"): void;
+}>();
+
 const { removeList, removeTask } = useTasksListFeatures();
 </script>
 
@@ -17,7 +21,11 @@ const { removeList, removeTask } = useTasksListFeatures();
   <article>
     <Card :show-header="true" :show-content="true" :show-footer="showChildren">
       <template #header>
-        <TasksListHeader :list="list" @on-remove="removeList(list)" />
+        <TasksListHeader
+          :list="list"
+          @on-pin="$emit('onPin')"
+          @on-remove="removeList(list)"
+        />
       </template>
 
       <template #content>

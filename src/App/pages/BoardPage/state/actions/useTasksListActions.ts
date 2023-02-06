@@ -25,5 +25,25 @@ export const useTasksListActions = (state: BoardPageState) => {
     syncBoardWithCache();
   };
 
-  return { addList, removeList };
+  const pinList = (listToPin: TasksListModel) => {
+    state.value.board = {
+      ...state.value.board,
+      lists: state.value.board.lists.filter(
+        (list: TasksListModel) => list.id !== listToPin.id
+      ),
+      pinnedLists: [...state.value.board.pinnedLists, listToPin],
+    };
+  };
+
+  const unpinList = (listToUnpin: TasksListModel) => {
+    state.value.board = {
+      ...state.value.board,
+      lists: [listToUnpin, ...state.value.board.lists],
+      pinnedLists: state.value.board.pinnedLists.filter(
+        (list: TasksListModel) => list.id !== listToUnpin.id
+      ),
+    };
+  };
+
+  return { addList, removeList, pinList, unpinList };
 };
