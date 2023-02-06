@@ -4,10 +4,10 @@ import AppPageLayout from "@/App/components/AppPageLayout/AppPageLayout.vue";
 import Board from "@/App/components/Board/Board.vue";
 import { useBoardsPageFeatures } from "./composables/useBoardsPageFeatures";
 import { useBoardsPageState } from "./state/useBoardsPageState";
-import AddItem from "@/App/components/AddItem/AddItem.vue";
 import { onMounted, ref } from "vue";
 import { getBoards } from "@/api/getBoards";
 import { BoardModel } from "../BoardPage/models/BoardModel";
+import AddBoard from "@app/widgets/AddBoard/AddBoard.vue";
 
 const state = useBoardsPageState();
 const { addBoard, removeBoard, navigateToBoardPage } = useBoardsPageFeatures();
@@ -49,11 +49,7 @@ onMounted(async () => {
         </div>
 
         <div class="BoardsPage-cell">
-          <AddItem
-            button-text="+ Add board"
-            placeholder="Enter board title"
-            @on-add="addBoard"
-          />
+          <AddBoard @on-add="addBoard" />
         </div>
       </div>
     </template>
