@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import IconButton from "@shared/components/IconButton.vue";
-import { ButtonStyle } from "@/shared/components/Button/enums/ButtonStyle";
-import { MaterialIcon } from "@/shared/components/Icon/enums/MaterialIcon";
+import DeleteButton from "@/App/components/DeleteButton/DeleteButton.vue";
 
 defineEmits<{
   (e: "onRemove"): void;
@@ -11,11 +9,7 @@ defineEmits<{
 <template>
   <div class="Task">
     <div class="Task--content"><slot /></div>
-    <IconButton
-      :icon="MaterialIcon.Close"
-      :visual-style="ButtonStyle.Error"
-      @click="$emit('onRemove')"
-    />
+    <DeleteButton @click="$emit('onRemove')" />
   </div>
 </template>
 

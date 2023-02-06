@@ -3,4 +3,5 @@ export enum MaterialIcon {
   Default = "flutter_dash",
   Close = "close",
   Pin = "push_pin",
+  Delete = "delete",
 }
