@@ -11,7 +11,8 @@ import AddBoard from "@app/widgets/AddBoard/AddBoard.vue";
 import { boards } from "@/static-data/boards";
 
 const state = useBoardsPageState();
-const { addBoard, removeBoard, navigateToBoardPage } = useBoardsPageFeatures();
+const { addBoard, removeBoard, navigateToBoardPage, toggleBoardFavorite } =
+  useBoardsPageFeatures();
 const isLoading = ref(true);
 
 onMounted(async () => {
@@ -45,7 +46,11 @@ onMounted(async () => {
           :key="board.id"
         >
           <Card class="BoardsPage-board" @dblclick="navigateToBoardPage(board)">
-            <Board :board="board" @on-remove="removeBoard(board)" />
+            <Board
+              :board="board"
+              @on-favorite="toggleBoardFavorite(board)"
+              @on-remove="removeBoard(board)"
+            />
           </Card>
         </div>
 

@@ -23,5 +23,12 @@ export const useBoardsPageFeatures = () => {
 
   const addBoard = (board: BoardModel) => state.addBoard(board);
 
-  return { navigateToBoardPage, removeBoard, addBoard };
+  const toggleBoardFavorite = (board: BoardModel) =>
+    state.updateBoard(
+      board.isFavorite
+        ? { ...board, isFavorite: false }
+        : { ...board, isFavorite: true }
+    );
+
+  return { navigateToBoardPage, removeBoard, addBoard, toggleBoardFavorite };
 };

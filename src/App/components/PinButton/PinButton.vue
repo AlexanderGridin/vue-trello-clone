@@ -11,31 +11,21 @@ export interface PinButtonProps {
 const props = defineProps<PinButtonProps>();
 
 const iconCssClass = computed(() => {
-  return `PinButton-icon ${props.isPinned ? "PinButton-icon--pinned" : ""}`;
+  return `icon PinButton-icon ${
+    props.isPinned ? "PinButton-icon--pinned" : ""
+  }`;
 });
 </script>
 
 <template>
-  <button :type="ButtonType.Button" class="PinButton">
+  <button :type="ButtonType.Button" class="plain-button">
     <Icon :icon="MaterialIcon.Pin" :class="iconCssClass" />
   </button>
 </template>
 
 <style scoped>
-.PinButton {
-  border: none;
-  background: none;
-  display: inline-block;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-}
-
 .PinButton-icon {
-  font-size: 28px;
   overflow: hidden;
-  display: block;
-  color: #a5a9b1;
 }
 
 .PinButton-icon--pinned {

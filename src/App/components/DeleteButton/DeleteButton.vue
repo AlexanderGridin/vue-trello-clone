@@ -4,25 +4,13 @@ import { MaterialIcon } from "@/shared/components/Icon/enums/MaterialIcon";
 </script>
 
 <template>
-  <button class="DeleteButton">
-    <Icon :icon="MaterialIcon.Delete" class="DeleteButton-icon" />
+  <button class="plain-button">
+    <Icon :icon="MaterialIcon.Delete" class="icon DeleteButton-icon" />
   </button>
 </template>
 
 <style scoped>
-.DeleteButton {
-  border: none;
-  background: none;
-  display: inline-block;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-}
-
 .DeleteButton-icon {
-  font-size: 28px;
-  display: block;
-  color: #a5a9b1;
   transition: color 0.4s;
 }
 

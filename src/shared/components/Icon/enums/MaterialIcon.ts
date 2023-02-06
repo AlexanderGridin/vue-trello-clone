@@ -4,4 +4,5 @@ export enum MaterialIcon {
   Close = "close",
   Pin = "push_pin",
   Delete = "delete",
+  Star = "star",
 }
