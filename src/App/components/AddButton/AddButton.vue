@@ -4,13 +4,14 @@ import { useAddButtonStyles } from "./composables/useAddButtonStyles";
 
 export interface AddButtonProps {
   buttonType?: ButtonType;
-  isTextDark?: boolean;
+  alignContent?: "center" | null;
+  minHeight?: number;
 }
 
 const props = withDefaults(defineProps<AddButtonProps>(), {
   buttonType: ButtonType.Button,
-  isTextDark: false,
 });
+
 const { styles } = useAddButtonStyles(props);
 </script>
 
@@ -30,7 +31,8 @@ const { styles } = useAddButtonStyles(props);
   transition: all 0.4s;
   text-align: left;
   background-color: #ffffff3d;
-  display: block;
+  display: flex;
+  align-items: center;
   font-size: 16px;
 }
 
