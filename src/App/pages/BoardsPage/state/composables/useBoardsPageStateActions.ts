@@ -1,5 +1,5 @@
 import type { BoardsPageState } from "../models/BoardsPageState";
-import type { BoardModel } from "@pages/BoardPage/models/BoardModel";
+import type { BoardModel } from "@app/entities/Board/BoardModel";
 
 export const useBoardsPageStateActions = (state: BoardsPageState) => {
   const setBoards = (boards: BoardModel[]) => (state.value.boards = boards);

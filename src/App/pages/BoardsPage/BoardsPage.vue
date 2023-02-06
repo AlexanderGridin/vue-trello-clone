@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import Card from "@/shared/components/Card/Card.vue";
 import AppPageLayout from "@/App/components/AppPageLayout/AppPageLayout.vue";
-import Board from "@/App/components/Board/Board.vue";
+import Board from "@app/widgets/Board/Board.vue";
 import { useBoardsPageFeatures } from "./composables/useBoardsPageFeatures";
 import { useBoardsPageState } from "./state/useBoardsPageState";
-import AddItem from "@/App/components/AddItem/AddItem.vue";
 import { onMounted, ref } from "vue";
 import { getBoards } from "@/api/getBoards";
-import { BoardModel } from "../BoardPage/models/BoardModel";
+/* import { BoardModel } from "@app/entities/Board/BoardModel"; */
+import AddBoard from "@app/widgets/AddBoard/AddBoard.vue";
+import { boards } from "@/static-data/boards";
 
 const state = useBoardsPageState();
 const { addBoard, removeBoard, navigateToBoardPage } = useBoardsPageFeatures();
@@ -20,9 +21,9 @@ onMounted(async () => {
   }
 
   const loadedBoards = await getBoards();
-  const boards = loadedBoards.products
-    .slice(0, 6)
-    .map((board: any) => new BoardModel({ id: board.id, title: board.title }));
+  /* const boards = loadedBoards.products */
+  /*   .slice(0, 6) */
+  /*   .map((board: any) => new BoardModel({ id: board.id, title: board.title })); */
 
   state.setBoards(boards);
   state.setIsLoaded(true);
@@ -49,11 +50,7 @@ onMounted(async () => {
         </div>
 
         <div class="BoardsPage-cell">
-          <AddItem
-            button-text="+ Add board"
-            placeholder="Enter board title"
-            @on-add="addBoard"
-          />
+          <AddBoard @on-add="addBoard" />
         </div>
       </div>
     </template>

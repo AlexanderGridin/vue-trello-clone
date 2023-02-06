@@ -1,26 +1,24 @@
-import { TasksListModel } from "@/App/components/TasksList/models/TasksListModel";
-import { TaskModel } from "@/App/components/Task/models/TaskModel";
+import type { TasksListModel } from "@app/entities/TasksList/TasksListModel";
+import type { TaskModel } from "@app/entities/Task/TaskModel";
 import { useBoardPageState } from "@pages/BoardPage/state/useBoardPageState";
-import type { AddItemFormValue } from "@/App/components/AddItem/components/AddItemForm/models/AddItemFormValue";
-import type { BoardModel } from "../models/BoardModel";
+import type { BoardModel } from "@app/entities/Board/BoardModel";
 
 export const useBoardPageFeatures = (board: BoardModel) => {
   const state = useBoardPageState();
 
-  const addList = (entity: AddItemFormValue) => {
-    state.addList(
-      new TasksListModel({ title: entity.text, boardId: board.id })
-    );
+  const addList = (list: TasksListModel) => {
+    state.addList({
+      ...list,
+      boardId: board.id,
+    });
   };
 
-  const addTaskInList = (list: TasksListModel, formValue: AddItemFormValue) => {
-    state.addTask(
-      new TaskModel({
-        listId: list.id,
-        boardId: board.id,
-        content: formValue.text,
-      })
-    );
+  const addTaskInList = (task: TaskModel, list: TasksListModel) => {
+    state.addTask({
+      ...task,
+      listId: list.id,
+      boardId: board.id,
+    });
   };
 
   return { addList, addTaskInList };

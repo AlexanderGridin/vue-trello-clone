@@ -1,8 +1,9 @@
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
-import { BoardModel } from "../models/BoardModel";
+import { BoardModel } from "@app/entities/Board/BoardModel";
 import { useBoardPageState } from "@pages/BoardPage/state/useBoardPageState";
 import { getBoard } from "@/api/getBoard";
+import { boards } from "@/static-data/boards";
 
 export const useBoardPageWatchers = () => {
   const state = useBoardPageState();
@@ -16,10 +17,12 @@ export const useBoardPageWatchers = () => {
 
       if (!cachedBoard) {
         const loadedBoard = await getBoard(id as string);
-        const board = new BoardModel({
-          id: loadedBoard.id,
-          title: loadedBoard.title,
-        });
+        // const board = new BoardModel({
+        //   id: loadedBoard.id,
+        //   title: loadedBoard.title,
+        // });
+        const board =
+          boards.find((b: BoardModel) => b.id === id) ?? new BoardModel({});
 
         state.cacheBoard(board);
         state.setBoard(board);

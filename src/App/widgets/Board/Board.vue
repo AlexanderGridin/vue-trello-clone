@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { BoardModel } from "@/App/pages/BoardPage/models/BoardModel";
+import type { BoardModel } from "@app/entities/Board/BoardModel";
 import BoardHeader from "./components/BoardHeader.vue";
 
 defineProps<{

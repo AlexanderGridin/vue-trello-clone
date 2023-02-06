@@ -2,7 +2,7 @@
 import IconButton from "@shared/components/IconButton.vue";
 import { MaterialIcon } from "@/shared/components/Icon/enums/MaterialIcon";
 import { ButtonStyle } from "@/shared/components/Button/enums/ButtonStyle";
-import type { BoardModel } from "@/App/pages/BoardPage/models/BoardModel";
+import type { BoardModel } from "@/App/entities/Board/BoardModel";
 
 defineProps<{
   board: BoardModel;

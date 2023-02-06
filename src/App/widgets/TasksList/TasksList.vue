@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { TasksListModel } from "@app/components/TasksList/models/TasksListModel";
+import type { TasksListModel } from "@app/entities/TasksList/TasksListModel";
 import TasksListHeader from "./components/TasksListHeader.vue";
 import { useTasksListFeatures } from "./composables/useTasksListFeatures";
 import Card from "@shared/components/Card/Card.vue";
-import Task from "@app/components/Task/Task.vue";
+import Task from "@app/widgets/Task/Task.vue";
 
 defineProps<{
   list: TasksListModel;

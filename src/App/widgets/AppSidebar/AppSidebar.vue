@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import User from "../User/User.vue";
-import AppNavigation from "../AppNavigation/AppNavigation.vue";
+import User from "@app/components/User/User.vue";
+import AppNavigation from "@app/components/AppNavigation/AppNavigation.vue";
 
 const dateParts = new Date().toLocaleDateString().split("/");
 const [month, day, year] = dateParts;

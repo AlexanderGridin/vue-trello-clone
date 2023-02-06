@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import BoardPageCell from "@app/pages/BoardPage/components/BoardPageCell.vue";
-import TasksList from "@app/components/TasksList/TasksList.vue";
+import TasksList from "@app/widgets/TasksList/TasksList.vue";
 import AppPageLayout from "@app/components/AppPageLayout/AppPageLayout.vue";
 import { useBoardPageState } from "@pages/BoardPage/state/useBoardPageState";
-import AddItem from "@/App/components/AddItem/AddItem.vue";
 import { useBoardPageFeatures } from "./comosables/useBoardPageFeatures";
 import { useBoardPageWatchers } from "./comosables/useBoardPageWatchers";
+import AddTask from "@/App/widgets/AddTask/AddTask.vue";
+import AddTasksList from "@/App/widgets/AddTasksList/AddTasksList.vue";
 
 const state = useBoardPageState();
 const { addList, addTaskInList } = useBoardPageFeatures(state.board);
@@ -22,21 +23,12 @@ const { isLoading } = useBoardPageWatchers();
       <div class="content">
         <BoardPageCell v-for="list in state.board.lists" :key="list.id">
           <TasksList :list="list" :show-children="true">
-            <AddItem
-              button-text="+ Add task"
-              placeholder="Enter task title"
-              :is-dark="true"
-              @on-add="(entity) => addTaskInList(list, entity)"
-            />
+            <AddTask @on-add="(task) => addTaskInList(task, list)" />
           </TasksList>
         </BoardPageCell>
 
         <BoardPageCell>
-          <AddItem
-            button-text="+ Add list"
-            placeholder="Enter list title"
-            @on-add="addList"
-          />
+          <AddTasksList @on-add="addList" />
         </BoardPageCell>
       </div>
     </template>
