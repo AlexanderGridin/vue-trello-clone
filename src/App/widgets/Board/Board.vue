@@ -7,12 +7,17 @@ defineProps<{
 }>();
 
 defineEmits<{
+  (e: "onFavorite"): void;
   (e: "onRemove"): void;
 }>();
 </script>
 
 <template>
-  <BoardHeader :board="board" @on-remove="$emit('onRemove')" />
+  <BoardHeader
+    :board="board"
+    @on-favorite="$emit('onFavorite')"
+    @on-remove="$emit('onRemove')"
+  />
 </template>
 
 <style scoped></style>

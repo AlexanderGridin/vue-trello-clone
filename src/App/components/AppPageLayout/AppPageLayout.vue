@@ -12,8 +12,8 @@ withDefaults(defineProps<AppPageLayoutProps>(), {
 
 <template>
   <div class="AppPageLayout">
-    <div class="AppPageLayout--header"><slot name="header" /></div>
-    <div class="AppPageLayout--content"><slot name="content" /></div>
+    <div class="AppPageLayout__header"><slot name="header" /></div>
+    <div class="AppPageLayout__content"><slot name="content" /></div>
 
     <slot />
     <Spinner v-if="isLoading" />
@@ -31,14 +31,13 @@ withDefaults(defineProps<AppPageLayoutProps>(), {
   flex-direction: column;
 }
 
-.AppPageLayout--header {
-  padding: 7px 20px;
+.AppPageLayout__header {
+  padding: 25px;
 }
 
-.AppPageLayout--content {
+.AppPageLayout__content {
   flex-grow: 1;
   overflow-x: auto;
-  padding: 20px 0;
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
 }

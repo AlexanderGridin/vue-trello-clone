@@ -7,6 +7,7 @@ import { useBoardPageFeatures } from "./comosables/useBoardPageFeatures";
 import { useBoardPageWatchers } from "./comosables/useBoardPageWatchers";
 import AddTask from "@/App/widgets/AddTask/AddTask.vue";
 import AddTasksList from "@/App/widgets/AddTasksList/AddTasksList.vue";
+import AppPageTitle from "@/App/components/AppPageTitle/AppPageTitle.vue";
 
 const state = useBoardPageState();
 const { addList, addTaskInList, togglePinList } = useBoardPageFeatures(
@@ -18,11 +19,11 @@ const { isLoading } = useBoardPageWatchers();
 <template>
   <AppPageLayout :is-loading="isLoading">
     <template #header>
-      <h2 class="title">{{ state.board.title }}</h2>
+      <AppPageTitle>{{ state.board.title }}</AppPageTitle>
     </template>
 
     <template #content>
-      <div class="content">
+      <div class="BoardPage__content">
         <BoardPageCell v-for="list in state.boardLists" :key="list.id">
           <TasksList
             :list="list"
@@ -42,16 +43,7 @@ const { isLoading } = useBoardPageWatchers();
 </template>
 
 <style scoped>
-.title {
-  margin: 0;
-  text-align: center;
-  line-height: 1.3;
-  color: #fff;
-  text-transform: uppercase;
-  font-size: 24px;
-}
-
-.content {
+.BoardPage__content {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;

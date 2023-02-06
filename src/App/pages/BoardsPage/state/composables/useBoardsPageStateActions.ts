@@ -14,7 +14,13 @@ export const useBoardsPageStateActions = (state: BoardsPageState) => {
     );
   };
 
+  const updateBoard = (boardToUpdate: BoardModel) => {
+    state.value.boards = state.value.boards.map((board: BoardModel) =>
+      board.id !== boardToUpdate.id ? { ...board } : { ...boardToUpdate }
+    );
+  };
+
   const setIsLoaded = (isLoaded: boolean) => (state.value.isLoaded = isLoaded);
 
-  return { addBoard, removeBoard, setBoards, setIsLoaded };
+  return { addBoard, removeBoard, setBoards, setIsLoaded, updateBoard };
 };

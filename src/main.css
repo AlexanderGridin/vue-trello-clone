@@ -52,3 +52,18 @@ body {
 .text-dark {
   color: #000;
 }
+
+.plain-button {
+  border: none;
+  background: none;
+  display: inline-block;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+.icon {
+  font-size: 28px;
+  display: inline-block;
+  color: #a5a9b1;
+}
