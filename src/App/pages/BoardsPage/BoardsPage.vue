@@ -9,6 +9,7 @@ import { getBoards } from "@/api/getBoards";
 /* import { BoardModel } from "@app/entities/Board/BoardModel"; */
 import AddBoard from "@app/widgets/AddBoard/AddBoard.vue";
 import { boards } from "@/static-data/boards";
+import AppPageTitle from "@/App/components/AppPageTitle/AppPageTitle.vue";
 
 const state = useBoardsPageState();
 const { addBoard, removeBoard, navigateToBoardPage, toggleBoardFavorite } =
@@ -35,17 +36,20 @@ onMounted(async () => {
 <template>
   <AppPageLayout :is-loading="isLoading">
     <template #header>
-      <h1 class="BoardsPage-title">Boards</h1>
+      <AppPageTitle>Boards</AppPageTitle>
     </template>
 
     <template #content>
-      <div class="BoardsPage-container">
+      <div class="BoardsPage__container">
         <div
-          class="BoardsPage-cell"
+          class="BoardsPage__cell"
           v-for="board in state.boards"
           :key="board.id"
         >
-          <Card class="BoardsPage-board" @dblclick="navigateToBoardPage(board)">
+          <Card
+            class="BoardsPage__board"
+            @dblclick="navigateToBoardPage(board)"
+          >
             <Board
               :board="board"
               @on-favorite="toggleBoardFavorite(board)"
@@ -54,7 +58,7 @@ onMounted(async () => {
           </Card>
         </div>
 
-        <div class="BoardsPage-cell">
+        <div class="BoardsPage__cell">
           <AddBoard @on-add="addBoard" />
         </div>
       </div>
@@ -63,29 +67,22 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.BoardsPage-title {
-  text-align: center;
-  color: #fff;
-  margin: 0;
-  transform: uppercase;
-}
-
-.BoardsPage-container {
+.BoardsPage__container {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
 }
 
-.BoardsPage-cell {
+.BoardsPage__cell {
   width: 300px;
   margin: 7px;
 }
 
-.BoardsPage-board {
+.BoardsPage__board {
   height: 150px;
 }
 
-.BoardsPage-board:hover {
+.BoardsPage__board:hover {
   cursor: pointer;
 }
 </style>

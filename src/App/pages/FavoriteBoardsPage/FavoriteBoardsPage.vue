@@ -4,6 +4,7 @@ import AppPageLayout from "@/App/components/AppPageLayout/AppPageLayout.vue";
 import Board from "@app/widgets/Board/Board.vue";
 import { useBoardsPageFeatures } from "@app/pages/BoardsPage/composables/useBoardsPageFeatures";
 import { useBoardsPageState } from "@app/pages/BoardsPage/state/useBoardsPageState";
+import AppPageTitle from "@app/components/AppPageTitle/AppPageTitle.vue";
 
 const state = useBoardsPageState();
 const { removeBoard, navigateToBoardPage, toggleBoardFavorite } =
@@ -13,18 +14,18 @@ const { removeBoard, navigateToBoardPage, toggleBoardFavorite } =
 <template>
   <AppPageLayout>
     <template #header>
-      <h1 class="FavoriteBoardsPage-title">Boards</h1>
+      <AppPageTitle>Favorite Boards</AppPageTitle>
     </template>
 
     <template #content>
-      <div class="FavoriteBoardsPage-container">
+      <div class="FavoriteBoardsPage__container">
         <div
-          class="FavoriteBoardsPage-cell"
+          class="FavoriteBoardsPage__cell"
           v-for="board in state.favoriteBoards"
           :key="board.id"
         >
           <Card
-            class="FavoriteBoardsPage-board"
+            class="FavoriteBoardsPage__board"
             @dblclick="navigateToBoardPage(board)"
           >
             <Board
@@ -40,29 +41,22 @@ const { removeBoard, navigateToBoardPage, toggleBoardFavorite } =
 </template>
 
 <style scoped>
-.FavoriteBoardsPage-title {
-  text-align: center;
-  color: #fff;
-  margin: 0;
-  transform: uppercase;
-}
-
-.FavoriteBoardsPage-container {
+.FavoriteBoardsPage__container {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
 }
 
-.FavoriteBoardsPage-cell {
+.FavoriteBoardsPage__cell {
   width: 300px;
   margin: 7px;
 }
 
-.FavoriteBoardsPage-board {
+.FavoriteBoardsPage__board {
   height: 150px;
 }
 
-.FavoriteBoardsPage-board:hover {
+.FavoriteBoardsPage__board:hover {
   cursor: pointer;
 }
 </style>
