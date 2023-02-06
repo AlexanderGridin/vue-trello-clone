@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AddItem from "@app/components/AddItem/AddItem.vue";
+import AddItemLayout from "@app/components/AddItemLayout/AddItemLayout.vue";
 import AddButton from "@/App/components/AddButton/AddButton.vue";
 import AddItemForm from "@/App/components/AddItemForm/AddItemForm.vue";
 import { useAddBoardFeatures } from "./composables/useAddBoardFatures";
@@ -14,7 +14,7 @@ const { add } = useAddBoardFeatures(emit);
 </script>
 
 <template>
-  <AddItem>
+  <AddItemLayout>
     <template #button="{ isShowForm, showForm }">
       <AddButton
         v-if="!isShowForm"
@@ -34,7 +34,7 @@ const { add } = useAddBoardFeatures(emit);
         @on-cancel="hideForm"
       />
     </template>
-  </AddItem>
+  </AddItemLayout>
 </template>
 
 <style scoped></style>

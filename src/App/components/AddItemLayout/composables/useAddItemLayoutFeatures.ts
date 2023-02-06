@@ -1,7 +1,7 @@
 import type { Ref } from "vue";
-import type { AddItemState } from "./useAddItemState";
+import type { AddItemLayoutState } from "./useAddItemLayoutState";
 
-export const useAddItemFeatures = (state: Ref<AddItemState>) => {
+export const useAddItemLayoutFeatures = (state: Ref<AddItemLayoutState>) => {
   const showForm = () => {
     state.value.isShowForm = true;
   };
