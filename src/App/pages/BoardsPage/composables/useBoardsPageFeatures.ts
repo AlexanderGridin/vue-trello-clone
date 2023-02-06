@@ -2,7 +2,6 @@ import { useRouter } from "vue-router";
 import type { BoardModel } from "@pages/BoardPage/models/BoardModel";
 import { useBoardsPageState } from "../state/useBoardsPageState";
 import { useBoardPageState } from "../../BoardPage/state/useBoardPageState";
-import type { AddItemFormValue } from "@/App/components/AddItemForm/models/AddItemFormValue";
 
 export const useBoardsPageFeatures = () => {
   const router = useRouter();
