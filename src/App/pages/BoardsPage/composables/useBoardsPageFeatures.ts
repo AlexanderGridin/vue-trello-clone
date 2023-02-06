@@ -1,8 +1,8 @@
 import { useRouter } from "vue-router";
-import { BoardModel } from "@pages/BoardPage/models/BoardModel";
+import type { BoardModel } from "@pages/BoardPage/models/BoardModel";
 import { useBoardsPageState } from "../state/useBoardsPageState";
 import { useBoardPageState } from "../../BoardPage/state/useBoardPageState";
-import type { AddItemFormValue } from "@/App/components/AddItem/components/AddItemForm/models/AddItemFormValue";
+import type { AddItemFormValue } from "@/App/components/AddItemForm/models/AddItemFormValue";
 
 export const useBoardsPageFeatures = () => {
   const router = useRouter();
@@ -22,8 +22,7 @@ export const useBoardsPageFeatures = () => {
     }
   };
 
-  const addBoard = (formValue: AddItemFormValue) =>
-    state.addBoard(new BoardModel({ title: formValue.text }));
+  const addBoard = (board: BoardModel) => state.addBoard(board);
 
   return { navigateToBoardPage, removeBoard, addBoard };
 };

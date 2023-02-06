@@ -2,11 +2,11 @@
 import AddItem from "@app/components/AddItem/AddItem.vue";
 import AddButton from "@/App/components/AddButton/AddButton.vue";
 import AddItemForm from "@/App/components/AddItemForm/AddItemForm.vue";
-import type { AddItemFormValue } from "@/App/components/AddItemForm/models/AddItemFormValue";
 import { useAddBoardFeatures } from "./composables/useAddBoardFatures";
+import type { BoardModel } from "@/App/pages/BoardPage/models/BoardModel";
 
 export interface AddBoardEmitter {
-  (e: "onAdd", value: AddItemFormValue): void;
+  (e: "onAdd", board: BoardModel): void;
 }
 
 const emit = defineEmits<AddBoardEmitter>();
