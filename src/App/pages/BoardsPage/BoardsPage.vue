@@ -2,34 +2,44 @@
 import Card from "@/shared/components/Card/Card.vue";
 import AppPageLayout from "@/App/components/AppPageLayout/AppPageLayout.vue";
 import Board from "@app/widgets/Board/Board.vue";
-import { useBoardsPageFeatures } from "./composables/useBoardsPageFeatures";
 import { useBoardsPageState } from "./state/useBoardsPageState";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
 import { getBoards } from "@/api/getBoards";
 /* import { BoardModel } from "@app/entities/Board/BoardModel"; */
-import AddBoard from "@app/widgets/AddBoard/AddBoard.vue";
 import { boards } from "@/static-data/boards";
 import AppPageTitle from "@/App/components/AppPageTitle/AppPageTitle.vue";
+import { useDragAndDropState } from "@/App/drag-and-drop/useDragAndDropState";
+import BoardsList from "@/App/widgets/BoardsList/BoardsList.vue";
 
 const state = useBoardsPageState();
-const { addBoard, removeBoard, navigateToBoardPage, toggleBoardFavorite } =
-  useBoardsPageFeatures();
 const isLoading = ref(true);
 
 onMounted(async () => {
+  console.log("onMounted from component");
   if (state.isLoaded) {
     isLoading.value = false;
     return;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const loadedBoards = await getBoards();
   /* const boards = loadedBoards.products */
   /*   .slice(0, 6) */
   /*   .map((board: any) => new BoardModel({ id: board.id, title: board.title })); */
 
   state.setBoards(boards);
+  console.log(boards);
   state.setIsLoaded(true);
   isLoading.value = false;
+});
+
+const dndState = useDragAndDropState();
+
+const ds = computed(() => {
+  return {
+    transform: `translate(${dndState.previewPosition.x}px , ${dndState.previewPosition.y}px)`,
+    width: "300px",
+  };
 });
 </script>
 
@@ -40,49 +50,36 @@ onMounted(async () => {
     </template>
 
     <template #content>
-      <div class="BoardsPage__container">
-        <div
-          class="BoardsPage__cell"
-          v-for="board in state.boards"
-          :key="board.id"
-        >
-          <Card
-            class="BoardsPage__board"
-            @dblclick="navigateToBoardPage(board)"
-          >
+      <div
+        v-if="dndState.draggedItem"
+        :style="{
+          position: 'fixed',
+          zIndex: 999,
+          top: '0',
+          left: '0',
+          width: '100%',
+          height: '100%',
+          pointerEvents: 'none',
+        }"
+      >
+        <div :style="ds">
+          <Card class="BoardsPage__board">
             <Board
-              :board="board"
-              @on-favorite="toggleBoardFavorite(board)"
-              @on-remove="removeBoard(board)"
+              :board="dndState.draggedItem"
+              @on-favorite="() => {}"
+              @on-remove="() => {}"
             />
           </Card>
         </div>
-
-        <div class="BoardsPage__cell">
-          <AddBoard @on-add="addBoard" />
-        </div>
       </div>
+
+      <BoardsList :boards="state.boards" :is-show-add-board="true" />
     </template>
   </AppPageLayout>
 </template>
 
 <style scoped>
-.BoardsPage__container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-}
-
-.BoardsPage__cell {
-  width: 300px;
-  margin: 7px;
-}
-
 .BoardsPage__board {
   height: 150px;
-}
-
-.BoardsPage__board:hover {
-  cursor: pointer;
 }
 </style>
