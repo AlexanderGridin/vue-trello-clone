@@ -38,7 +38,6 @@ withDefaults(defineProps<AppPageLayoutProps>(), {
 .AppPageLayout__content {
   flex-grow: 1;
   overflow-x: auto;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
+  padding: 0 20px;
 }
 </style>
